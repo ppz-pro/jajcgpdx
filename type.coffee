@@ -1,0 +1,1 @@
+Object::isString = () => typeof this

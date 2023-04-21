@@ -1,0 +1,26 @@
+{
+  "name": "jajcgpdx",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "random-string.js"
+  ],
+  "scripts": {
+    "build": "coffee --compile --output ./ ./",
+    "test": "npm run build && jest",
+    "dev": "nodemon --ext coffee --exec npm run test"
+  },
+  "keywords": [
+    "meta programming"
+  ],
+  "author": "gy",
+  "license": "Unlicense",
+  "devDependencies": {
+    "coffeescript": "^2.7.0",
+    "jajcgpdx": "^0.0.0",
+    "jest": "^29.5.0",
+    "nodemon": "^2.0.22"
+  }
+}
