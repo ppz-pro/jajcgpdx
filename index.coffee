@@ -54,6 +54,38 @@ Array::divide = (divider) ->
     result[key] ||= []
     result.push(item)
 
+# like Array::every, but check 2 elements at the same time
+Array::every22 = (callbackFn) ->
+  return if @length < 2
+  last = @shift()
+  for i in [0..@length - 2]
+    return i unless callbackFn last, @[i]
+    last = @[i]
+  return true
+Array::every2 = (callbackFn) ->
+  result = @every22 callbackFn
+  return false if typeof(result) == 'number'
+  return result
+
+Array::isAsc = (getValue = defaultGetValue) ->
+  @map getValue
+  .every2 (a, b) -> a <= b
+Array::isDesc = (getValue = defaultGetValue) ->
+  @map getValue
+  .every2 (a, b) -> a >= b
+
+Array::any22 = (callbackFn) ->
+  return if @length < 2
+  last = @shift()
+  for i in [0..@length - 2]
+    return i if callbackFn @[i], last
+    last = @[i]
+  return false
+Array::any2 = (callbackFn) ->
+  result = @any22(callbackFn)
+  return true if typeof(result) == 'number'
+  return result
+
 Number::loop = (callbackFn) ->
   for i in [0...this]
     callbackFn i

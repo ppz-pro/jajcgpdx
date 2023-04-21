@@ -1,5 +1,5 @@
-require 'jajcgpdx'
-randomString = require 'jajcgpdx/random-string'
+require '.'
+randomString = require './random-string'
 
 test 'random string', ->
   result = randomString 10
@@ -46,4 +46,4 @@ test 'has a-z', ->
   expect set.size
   .toBe 26
 
-console.log '@ppzp/meta 的名字是', randomString 8
+# console.log '@ppzp/meta 的名字是', randomString 8

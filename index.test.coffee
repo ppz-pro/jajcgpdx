@@ -1,7 +1,7 @@
-require('jajcgpdx')
+require('.')
 
 test 'Array::sum', ->
-  expect [1, 2, 3].sum()
+  expect [1,2,3].sum()
   .toBe 6
 
 test 'Array::product', ->
@@ -13,11 +13,25 @@ test 'Array::product', ->
   .toBe 6
 
 test 'Array::ave', ->
-  expect [1, 2, 3].ave()
+  expect [1,2,3].ave()
   .toBe 2
 
 # test 'Array::max', ->
 #   expect []
+
+test 'Array::isAsc', ->
+  expect [1,2,2,3].isAsc()
+  .toBe true
+  
+  expect [].isAsc()
+  .toBe undefined
+  
+  expect [1,2,1,3].isAsc()
+  .toBe false
+
+test 'Array::isDesc', ->
+  expect [3,2,1].isDesc()
+  .toBe true
 
 test 'Number::loop', ->
   result = ''
