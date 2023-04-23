@@ -32,9 +32,11 @@ do ->
       return max
   
   Array::max2 = maxAndMin (a, b) -> a > b
-  Array::max = -> @max2()[0]
+  Array::max = (getValue) ->
+    @max2(getValue)?[0]
   Array::min2 = maxAndMin (a, b) -> a < b
-  Array::min = -> @min2()[0]
+  Array::min = (getValue) ->
+    @min2(getValue)?[0]
 
 Array::unique = (getValue = defaultGetValue) ->
   set = new Set
