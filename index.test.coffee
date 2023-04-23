@@ -1,16 +1,57 @@
+clone = require '@ppzp/utils/clone'
 require('.')
+
+equal = (a, b) -> JSON.stringify(a) == JSON.stringify(b)
+
+test 'Array::last', ->
+  expect [1,2,3].last()
+  .toBe 3
+  
+  expect [1,2,3].last(2)
+  .toBe 1
+  
+  expect [].last()
+  .toBe undefined
 
 test 'Array::sum', ->
   expect [1,2,3].sum()
   .toBe 6
+  
+  expect [
+    { k: e: y: 1 }
+    { k: e: y: 2 }
+    { k: e: y: 3 }
+  ].sum (item) -> item.k.e.y
+  .toBe 6
+
+  expect [].sum()
+  .toBe 0
+
+test 'Array::sum functional', ->
+  raw = [
+    { value: 1 }
+    { value: 2 }
+    { value: 3 }
+  ]
+  backup = clone raw
+  expect raw.sum (item) -> item.value
+  .toBe 6
+  expect equal raw, backup
+  .toBe true
 
 test 'Array::product', ->
+  expect [1,2,3].product()
+  .toBe 6
+
   expect [
     { value: 1 }
     { value: 2 }
     { value: 3 }
   ].product (item) -> item.value
   .toBe 6
+
+  expect [].product()
+  .toBe undefined
 
 test 'Array::ave', ->
   expect [1,2,3].ave()

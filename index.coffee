@@ -1,4 +1,8 @@
+# attention: functional first
+
 defaultGetValue = (target) -> target
+
+Array::last = (index = 0) -> @[@length - 1 - index]
 
 Array::sum = (getValue = defaultGetValue) ->
   result = 0
@@ -8,6 +12,7 @@ Array::sum = (getValue = defaultGetValue) ->
 Array::product = (getValue = defaultGetValue) ->
   return unless @length
   result = 1
+  # result = @shift() # this is wrong: it will change the original array
   @forEach (item, index) => result *= getValue(item, index)
   return result
 

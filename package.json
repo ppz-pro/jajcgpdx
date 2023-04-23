@@ -18,6 +18,7 @@
   "author": "gy",
   "license": "Unlicense",
   "devDependencies": {
+    "@ppzp/utils": "^0.0.13",
     "coffeescript": "^2.7.0",
     "jajcgpdx": "^0.0.0",
     "jest": "^29.5.0",
