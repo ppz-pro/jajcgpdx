@@ -60,6 +60,8 @@ Array::heavyUnique = (equal = (a, b) -> a == b) ->
 
 Array::count = (getValue = defaultGetValue) ->
   @unique(getValue).length
+Array::heavyCount = (equal = (a, b) -> a == b) ->
+  @heavyUnique(equal).length
 
 Array::getObj = (callbackFn) ->
   result = {}
