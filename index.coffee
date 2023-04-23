@@ -24,12 +24,11 @@ do ->
   maxAndMin = (compare) ->
     (getValue = defaultGetValue) ->
       return unless @length
-      first = @shift()
-      max = [getValue(first), first, 0]
-      for item, i in this
-        cur = getValue(item)
+      max = [getValue(@[0]), @[0], 0]
+      for i in [1...@length]
+        cur = getValue(@[i])
         if compare cur, max[0]
-          max = [cur, item, i]
+          max = [cur, @[i], i]
       return max
   
   Array::max2 = maxAndMin (a, b) -> a > b
