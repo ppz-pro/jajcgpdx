@@ -20,31 +20,30 @@ Array::ave = (getValue = defaultGetValue) ->
   return unless @length
   return @sum(getValue) / @length
 
-do ->
-  maxAndMin = (compare) ->
-    (getValue = defaultGetValue) ->
-      return unless @length
-      max = [getValue(@[0]), @[0], 0]
-      for i in [1...@length]
-        cur = getValue(@[i])
-        if compare cur, max[0]
-          max = [cur, @[i], i]
-      return max
-  
-  Array::max2 = maxAndMin (a, b) -> a > b
-  Array::max = (getValue) ->
-    @max2(getValue)?[0]
-  Array::min2 = maxAndMin (a, b) -> a < b
-  Array::min = (getValue) ->
-    @min2(getValue)?[0]
+maxAndMin = (compare) ->
+  (getValue = defaultGetValue) ->
+    return unless @length
+    max = [getValue(@[0]), @[0], 0]
+    for i in [1...@length]
+      cur = getValue(@[i])
+      if compare cur, max[0]
+        max = [cur, @[i], i]
+    return max
+Array::max2 = maxAndMin (a, b) -> a > b
+Array::max = (getValue) ->
+  @max2(getValue)?[0]
+Array::min2 = maxAndMin (a, b) -> a < b
+Array::min = (getValue) ->
+  @min2(getValue)?[0]
 
-Array::unique = (getValue = defaultGetValue) ->
+Array::unique2 = (getValue = defaultGetValue) ->
   set = new Set
   return @filter (item, index) ->
     value = getValue(item, index)
     if set.has value
       return false
     set.add(value)
+    return true
 
 Array::count = (getValue = defaultGetValue) ->
   @unique(getValue).length

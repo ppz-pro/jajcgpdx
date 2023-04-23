@@ -213,6 +213,49 @@ test 'Array::min functional', ->
   expect equal raw, backup
   .toBe true
 
+test 'Array::unique2', ->
+  expect [].unique2()
+  .toEqual []
+
+  expect [1,2,3].unique2()
+  .toEqual [1,2,3]
+
+  expect [1,2,3,1,2,3].unique2()
+  .toEqual [1,2,3]
+
+  expect [
+    { value: 1 }
+    { value: 2 }
+    { value: 3 }
+    { value: 1 }
+    { value: 2 }
+    { value: 3 }
+  ].unique2 (item) -> item.value
+  .toEqual [
+    { value: 1 }
+    { value: 2 }
+    { value: 3 }
+  ]
+
+test 'Array::unique2 functional', ->
+  raw = [
+    { value: 1 }
+    { value: 2 }
+    { value: 3 }
+    { value: 1 }
+    { value: 2 }
+    { value: 3 }
+  ]
+  backup = clone raw
+  expect raw.unique2 (item) -> item.value
+  .toEqual [
+    { value: 1 }
+    { value: 2 }
+    { value: 3 }
+  ]
+  expect equal raw, backup
+  .toBe true
+
 test 'Array::isAsc', ->
   expect [1,2,2,3].isAsc()
   .toBe true
