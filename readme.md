@@ -3,7 +3,7 @@
 npm install jajcgpdx
 ```
 
-# Why jajcgpdx
+## Why jajcgpdx
 写程序时，你的第一追求是什么？
 + 功能完整？
 + 运行效率高？

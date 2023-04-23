@@ -36,7 +36,7 @@ Array::min2 = maxAndMin (a, b) -> a < b
 Array::min = (getValue) ->
   @min2(getValue)?[0]
 
-Array::unique2 = (getValue = defaultGetValue) ->
+Array::unique = (getValue = defaultGetValue) ->
   set = new Set
   return @filter (item, index) ->
     value = getValue(item, index)
@@ -44,6 +44,19 @@ Array::unique2 = (getValue = defaultGetValue) ->
       return false
     set.add(value)
     return true
+
+# try not using it, get a way to use Array::unique
+Array::heavyUnique = (equal = (a, b) -> a == b) ->
+  temp = @unique() # remove the duplicated
+  result = []
+  for item in temp
+    toBe = false
+    for inner in result
+      if equal item, inner
+        toBe = true
+        break
+    result.push item if not toBe
+  return result
 
 Array::count = (getValue = defaultGetValue) ->
   @unique(getValue).length
