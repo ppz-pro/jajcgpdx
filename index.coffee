@@ -110,6 +110,8 @@ Array::any2 = (callbackFn) ->
   return true if typeof(result) == 'number'
   return result
 
+Array::promiseAll = ->
+
 Number::loop = (callbackFn) ->
   for i in [0...this]
     callbackFn i
