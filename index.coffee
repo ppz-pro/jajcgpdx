@@ -63,11 +63,15 @@ Array::count = (getValue = defaultGetValue) ->
 Array::heavyCount = (equal = (a, b) -> a == b) ->
   @heavyUnique(equal).length
 
-Array::getObj = (callbackFn) ->
-  result = {}
+_arrayGetObj = (callbackFn, initResult) ->
+  unless callbackFn instanceof Function
+    throw new Error 'callbackFn must be a function'
   @forEach (item, index) ->
-    callbackFn result, item, index
-  return result
+    callbackFn initResult, item, index
+  return initResult
+
+Array::getObj = (callbackFn) -> _arrayGetObj.call(@, callbackFn, {})
+Array::getMap = (callbackFn) -> _arrayGetObj.call(@, callbackFn, new Map)
 
 Array::divide = (divider) ->
   return Object.entries(divider).getObj (result, [key, item]) ->
