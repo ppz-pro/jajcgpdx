@@ -82,9 +82,9 @@ Array::divide = (divider) ->
 # like Array::every, but check 2 elements at the same time
 Array::every22 = (callbackFn) ->
   return if @length < 2
-  last = @shift()
-  for i in [0..@length - 2]
-    return i unless callbackFn last, @[i]
+  last = @[0] # 上一个比较的元素
+  for i in [1..@length - 1]
+    return i - 1 unless callbackFn last, @[i]
     last = @[i]
   return true
 Array::every2 = (callbackFn) ->
@@ -93,6 +93,7 @@ Array::every2 = (callbackFn) ->
   return result
 
 Array::isAsc = (getValue = defaultGetValue) ->
+  # @every2 (a, b) -> getValue(a) < getValue(b) # 这种会对下标为 1~length-2 的元素进行两次 getValue
   @map getValue
   .every2 (a, b) -> a <= b
 Array::isDesc = (getValue = defaultGetValue) ->

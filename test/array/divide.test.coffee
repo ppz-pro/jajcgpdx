@@ -1,28 +1,53 @@
 { equal, clone } = require '..'
 
 getArr = -> [
-  { user: 'ccz', city: 'beijing', detail: 'fake detail' }
-  { user: 'ppz', city: 'shanghai', detail: '孙环路 377 弄' }
-  { user: 'ppz', city: 'shanghai', detail: '锦绣路 3088 弄' }
-  { user: 'ccz', city: 'shanghai', detail: '锦绣路 3088 弄' }
-  { user: 'ppz', city: 'beijing', detail: 'fake detail' }
-  { user: 'ccz', city: 'shanghai', detail: '孙环路 377 弄'}
+  { year: 1, name: 'abc' }
+  { year: 3, name: 'def' }
+  { year: 99, name: 'opq' }
+  { year: 28, name: 'xyz' }
+  { year: 18, name: 'uvw' }
+  { year: 18, name: 'hij' }
+  { year: 58, name: 'klm' }
+  { year: 2, name: 'g' }
+  { year: 18, name: 'n' }
+  { year: 28, name: 'rst' }
 ]
 
 test 'Array::divide basic', ->
-  expect getArr().divide (item) -> item.user
+  raw = getArr()
+  
+  expect raw.divide (item) ->
+    if item.year < 10
+      return 'child'
+    else if item.year < 20
+      return 'teenager'
+    else if item.year < 60
+      return 'adult'
+    else
+      return 'old'
   .toEqual {
-    ppz: [
-      { user: 'ppz', city: 'shanghai', detail: '孙环路 377 弄' }
-      { user: 'ppz', city: 'shanghai', detail: '锦绣路 3088 弄' }
-      { user: 'ppz', city: 'beijing', detail: 'fake detail' }
+    child: [
+      { year: 1, name: 'abc' }
+      { year: 3, name: 'def' }
+      { year: 2, name: 'g' }
     ]
-    ccz: [
-      { user: 'ccz', city: 'beijing', detail: 'fake detail' }
-      { user: 'ccz', city: 'shanghai', detail: '锦绣路 3088 弄' }
-      { user: 'ccz', city: 'shanghai', detail: '孙环路 377 弄'}
+    teenager: [
+      { year: 18, name: 'uvw' }
+      { year: 18, name: 'hij' }
+      { year: 18, name: 'n' }
+    ]
+    adult: [
+      { year: 28, name: 'xyz' }
+      { year: 58, name: 'klm' }
+      { year: 28, name: 'rst' }
+    ]
+    old: [
+      { year: 99, name: 'opq' }
     ]
   }
+
+  expect raw
+  .toEqual getArr()
 
 test 'Array::divide empty array', ->
   expect [].divide()
