@@ -114,6 +114,9 @@ Array::any2 = (callbackFn) ->
 
 Array::promiseAll = ->
 
+Array::sort2 = (compare) ->
+  @slice().sort(compare)
+
 Number::loop = (callbackFn) ->
   for i in [0...this]
     callbackFn i
