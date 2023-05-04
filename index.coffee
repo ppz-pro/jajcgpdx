@@ -74,9 +74,10 @@ Array::getObj = (callbackFn) -> _arrayGetObj.call(@, callbackFn, {})
 Array::getMap = (callbackFn) -> _arrayGetObj.call(@, callbackFn, new Map)
 
 Array::divide = (divider) ->
-  return Object.entries(divider).getObj (result, [key, item]) ->
+  return @getObj (result, item, index) ->
+    key = divider(item, index)
     result[key] ||= []
-    result.push(item)
+    result[key].push(item)
 
 # like Array::every, but check 2 elements at the same time
 Array::every22 = (callbackFn) ->
