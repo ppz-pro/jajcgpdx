@@ -1,1 +1,0 @@
-Object::isString = () => typeof this

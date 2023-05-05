@@ -10,3 +10,11 @@ test 'Number::loop', ->
     (10).loop (index) -> index
     .join('')
   ).toBe '0123456789'
+
+  raw = 3
+  expect(
+    raw.loop (index) -> index
+    .join(',')
+  ).toBe '0,1,2'
+  expect raw
+  .toBe 3

@@ -121,6 +121,12 @@ Number::loop = (callbackFn) ->
   for i in [0...this]
     callbackFn i
 
+# private
+Number::isPositive = -> this > 0
+Number::nonNegative = -> this >= 0
+Number::isInteger = -> this % 1 == 0
+Number::isPositiveInteger = -> this.isPositive() && this.isInteger()
+
 Number::floor = -> Math.floor this
 Number::ceil = -> Math.ceil this
 

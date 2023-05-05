@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "files": [
-    "index.js",
-    "random-string.js"
+    "index.js"
   ],
   "scripts": {
     "build": "coffee --compile --output ./ ./",
