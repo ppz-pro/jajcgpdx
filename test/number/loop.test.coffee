@@ -1,6 +1,6 @@
 { equal, clone } = require '..'
 
-test 'Number::loop', ->
+test 'Number::loop basic', ->
   result = ''
   (10).loop (index) ->
     result += index
@@ -18,3 +18,14 @@ test 'Number::loop', ->
   ).toBe '0,1,2'
   expect raw
   .toBe 3
+
+test 'Number::loop throw error', ->
+  expect -> 1.1.loop()
+  .toThrow 'Number::loop must be called by non-negative integer'
+  expect -> 2.1.loop()
+  .toThrow 'Number::loop must be called by non-negative integer'
+  expect -> (-1).loop()
+  .toThrow 'Number::loop must be called by non-negative integer'
+
+  expect -> 1.loop()
+  .toThrow()
