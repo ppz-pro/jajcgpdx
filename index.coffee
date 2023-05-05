@@ -123,12 +123,16 @@ Number::nonNegative = -> this >= 0
 Number::isInteger = -> this % 1 == 0
 Number::isPositiveInteger = -> this.isPositive() && this.isInteger()
 
-Number::loop = (callbackFn) ->
+Number::loop = (getItem) ->
   unless @nonNegative() && @isInteger()
     throw Error 'Number::loop must be called by non-negative integer'
   
-  for i in [0...this]
-    callbackFn i
+  i = 0
+  while i < this
+    getItem i++
+
+Number::getArray = (getItem = defaultGetValue) ->
+  @loop getItem
 
 Number::floor = -> Math.floor this
 Number::ceil = -> Math.ceil this

@@ -19,6 +19,26 @@ test 'Number::loop basic', ->
   expect raw
   .toBe 3
 
+test 'Number::loop getArray', ->
+  expect 1.loop (index) -> index
+  .toEqual [0]
+
+  expect 6.loop (index) -> index + 1
+  .toEqual [1, 2, 3, 4, 5, 6]
+
+  expect 3.loop (index) -> { index }
+  .toEqual [
+    { index: 0 }
+    { index: 1 }
+    { index: 2 }
+  ]
+
+  expect 0.loop()
+  .toEqual []
+
+  expect 3.loop -> return
+  .toEqual [undefined, undefined, undefined]
+
 test 'Number::loop throw error', ->
   expect -> 1.1.loop()
   .toThrow 'Number::loop must be called by non-negative integer'
