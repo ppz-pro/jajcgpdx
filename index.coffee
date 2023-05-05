@@ -122,5 +122,6 @@ Number::loop = (callbackFn) ->
     callbackFn i
 
 Number::floor = -> Math.floor this
+Number::ceil = -> Math.ceil this
 
 Function::throttle = ->
