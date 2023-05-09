@@ -138,3 +138,10 @@ Number::floor = -> Math.floor this
 Number::ceil = -> Math.ceil this
 
 Function::throttle = ->
+
+pad_num = (num) ->
+  num = num.toString()
+  return num.padStart(2, '0')
+
+Date::format = ->
+  "#{@getFullYear()}-#{pad_num @getMonth() + 1}-#{pad_num @getDate()} #{pad_num @getHours()}:#{pad_num @getMinutes()}:#{pad_num @getSeconds()}"
