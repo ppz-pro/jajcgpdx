@@ -1,13 +1,13 @@
 { equal, clone } = require '..'
 
-test 'Array::heavyUnique', ->
-  expect [].heavyUnique()
+test 'Array::heavy_unique', ->
+  expect [].heavy_unique()
   .toEqual []
 
-  expect [1,2,3].heavyUnique()
+  expect [1,2,3].heavy_unique()
   .toEqual [1,2,3]
 
-  expect [1,2,3,1,2,3].heavyUnique()
+  expect [1,2,3,1,2,3].heavy_unique()
   .toEqual [1,2,3]
 
   # heavy!
@@ -18,7 +18,7 @@ test 'Array::heavyUnique', ->
     { value: 1 }
     { value: 2 }
     { value: 3 }
-  ].heavyUnique()
+  ].heavy_unique()
   .toEqual [
     { value: 1 }
     { value: 2 }
@@ -35,7 +35,7 @@ test 'Array::heavyUnique', ->
     { value: 1 }
     { value: 2 }
     { value: 3 }
-  ].heavyUnique (a, b) => a.value == b.value
+  ].heavy_unique (a, b) => a.value == b.value
   .toEqual [
     { value: 1 }
     { value: 2 }
@@ -48,13 +48,13 @@ test 'Array::heavyUnique', ->
     duplicatedSecond = new Date(2)
     third = new Date(3)
 
-    expect [first, second, duplicatedSecond, third].heavyUnique()
+    expect [first, second, duplicatedSecond, third].heavy_unique()
     .toEqual [first, second, duplicatedSecond, third]
     
-    expect [first, second, duplicatedSecond, third].heavyUnique (a, b) -> a.getTime() == b.getTime()
+    expect [first, second, duplicatedSecond, third].heavy_unique (a, b) -> a.getTime() == b.getTime()
     .toEqual [first, second, third]
 
-test 'Array::heavyUnique functional', ->
+test 'Array::heavy_unique functional', ->
   raw = [
     { value: 1 }
     { value: 2 }
@@ -64,7 +64,7 @@ test 'Array::heavyUnique functional', ->
     { value: 3 }
   ]
   backup = clone raw
-  expect raw.heavyUnique (a, b) -> a.value == b.value
+  expect raw.heavy_unique (a, b) -> a.value == b.value
   .toEqual [
     { value: 1 }
     { value: 2 }

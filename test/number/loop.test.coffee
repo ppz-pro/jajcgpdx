@@ -19,7 +19,7 @@ test 'Number::loop basic', ->
   expect raw
   .toBe 3
 
-test 'Number::loop getArray', ->
+test 'Number::loop get_array', ->
   expect 1.loop (index) -> index
   .toEqual [0]
 

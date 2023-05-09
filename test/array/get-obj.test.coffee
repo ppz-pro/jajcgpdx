@@ -1,15 +1,15 @@
 { equal, clone } = require '..'
 
-test 'Array::getObj', ->
-  expect -> [].getObj()
+test 'Array::get_obj', ->
+  expect -> [].get_obj()
   .toThrow()
-  expect -> [1].getObj()
+  expect -> [1].get_obj()
   .toThrow()
 
-  getObj = (obj, item, index) ->
+  get_obj = (obj, item, index) ->
     obj[item.id] = { index, item }
   
-  expect [].getObj getObj
+  expect [].get_obj get_obj
   .toEqual {}
 
   expect [
@@ -17,7 +17,7 @@ test 'Array::getObj', ->
     { id: 2, name: 'ccs' }
     { id: 3, name: 'jj' }
     { id: 4, name: 'yyz' }
-  ].getObj getObj 
+  ].get_obj get_obj 
   .toEqual {
     1: { index: 0, item: { id: 1, name: 'ppz' } }
     2: { index: 1, item: { id: 2, name: 'ccs' } }
@@ -31,7 +31,7 @@ test 'Array::getObj', ->
     { id: 3, name: 'jj' }
     { id: 3, name: 'jjz' }
     { id: 4, name: 'yyz' }
-  ].getObj getObj
+  ].get_obj get_obj
   .toEqual {
     1: { index: 0, item: { id: 1, name: 'ppz' } }
     2: { index: 1, item: { id: 2, name: 'ccs' } }
@@ -39,7 +39,7 @@ test 'Array::getObj', ->
     4: { index: 4, item: { id: 4, name: 'yyz' } }
   }
 
-test 'Array::getObj functional', ->
+test 'Array::get_obj functional', ->
   raw = [
     { id: 1, name: 'ppz' }
     { id: 2, name: 'ccs' }
@@ -47,7 +47,7 @@ test 'Array::getObj functional', ->
     { id: 4, name: 'yyz' }
   ]
   backup = clone raw
-  expect raw.getObj (obj, item, index) ->
+  expect raw.get_obj (obj, item, index) ->
     obj[item.id] = { index, item }
   .toEqual {
     1: { index: 0, item: { id: 1, name: 'ppz' } }

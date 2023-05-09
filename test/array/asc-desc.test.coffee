@@ -1,20 +1,20 @@
 { equal, clone } = require '..'
 
-test 'Array::isAsc', ->
+test 'Array::is_asc', ->
   raw = [1,2,2,3]
   
-  expect raw.isAsc()
+  expect raw.is_asc()
   .toBe true
 
   expect raw
   .toEqual [1,2,2,3]
 
-  expect [1,2,1,3].isAsc()
+  expect [1,2,1,3].is_asc()
   .toBe false
   
-  expect [2, 1, 3].isAsc()
+  expect [2, 1, 3].is_asc()
   .toBe false
-  expect [1, 3, 2].isAsc()
+  expect [1, 3, 2].is_asc()
   .toBe false
 
   expect [
@@ -22,7 +22,7 @@ test 'Array::isAsc', ->
     { year: 2 }
     { year: 2 }
     { year: 3 }
-  ].isAsc (item) -> item.year
+  ].is_asc (item) -> item.year
   .toBe true
 
   expect [
@@ -30,21 +30,21 @@ test 'Array::isAsc', ->
     { year: 2 }
     { year: 1 }
     { year: 3 }
-  ].isAsc (item) -> item.year
+  ].is_asc (item) -> item.year
   .toBe false
 
-  expect [].isAsc()
+  expect [].is_asc()
   .toBe undefined
-  expect [1].isAsc()
+  expect [1].is_asc()
   .toBe undefined
 
-test 'Array::isDesc', ->
-  expect [3,2,1].isDesc()
+test 'Array::is_desc', ->
+  expect [3,2,1].is_desc()
   .toBe true
-  expect [3,2,2,1].isDesc()
+  expect [3,2,2,1].is_desc()
   .toBe true
 
-  expect [].isDesc()
+  expect [].is_desc()
   .toBe undefined
-  expect [1].isDesc()
+  expect [1].is_desc()
   .toBe undefined

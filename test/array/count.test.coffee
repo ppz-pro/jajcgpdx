@@ -47,14 +47,14 @@ test 'Array::count functional', ->
   expect equal raw, backup
   .toBe true
 
-test 'Array::heavyCount', ->
-  expect [].heavyCount()
+test 'Array::heavy_count', ->
+  expect [].heavy_count()
   .toBe 0
 
-  expect [1,2,3].heavyCount()
+  expect [1,2,3].heavy_count()
   .toBe 3
 
-  expect [1,2,3,1,2,3].heavyCount()
+  expect [1,2,3,1,2,3].heavy_count()
   .toBe 3
 
   # heavy!
@@ -65,7 +65,7 @@ test 'Array::heavyCount', ->
     { value: 1 }
     { value: 2 }
     { value: 3 }
-  ].heavyCount()
+  ].heavy_count()
   .toBe 6
 
   expect [
@@ -75,7 +75,7 @@ test 'Array::heavyCount', ->
     { value: 1 }
     { value: 2 }
     { value: 3 }
-  ].heavyCount (a, b) => a.value == b.value
+  ].heavy_count (a, b) => a.value == b.value
   .toBe 3
 
   do ->
@@ -84,13 +84,13 @@ test 'Array::heavyCount', ->
     duplicatedSecond = new Date(2)
     third = new Date(3)
 
-    expect [first, second, duplicatedSecond, third].heavyCount()
+    expect [first, second, duplicatedSecond, third].heavy_count()
     .toBe 4
     
-    expect [first, second, duplicatedSecond, third].heavyCount (a, b) -> a.getTime() == b.getTime()
+    expect [first, second, duplicatedSecond, third].heavy_count (a, b) -> a.getTime() == b.getTime()
     .toBe 3
 
-test 'Array::heavyCount functional', ->
+test 'Array::heavy_count functional', ->
   raw = [
     { value: 1 }
     { value: 2 }
@@ -100,7 +100,7 @@ test 'Array::heavyCount functional', ->
     { value: 3 }
   ]
   backup = clone raw
-  expect raw.heavyCount (a, b) -> a.value == b.value
+  expect raw.heavy_count (a, b) -> a.value == b.value
   .toBe 3
   expect equal raw, backup
   .toBe true

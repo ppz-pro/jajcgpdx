@@ -1,101 +1,101 @@
 { equal, clone } = require '..'
 
-test 'Number::isInteger', ->
-  expect 1.2.isInteger()
+test 'Number::is_integer', ->
+  expect 1.2.is_integer()
   .toBe false
 
-  expect 1.isInteger()
+  expect 1.is_integer()
   .toBe true
 
-  expect 0.isInteger()
+  expect 0.is_integer()
   .toBe true
 
-  expect 0.1.isInteger()
+  expect 0.1.is_integer()
   .toBe false
 
-  expect (-2).isInteger()
+  expect (-2).is_integer()
   .toBe true
   # 符号优先级
-  expect -2.isInteger()
+  expect -2.is_integer()
   .toBe -1
 
-  expect (-2.1).isInteger()
+  expect (-2.1).is_integer()
   .toBe false
   # 符号优先级
-  expect -2.1.isInteger()
+  expect -2.1.is_integer()
   .toBe -0
 
-test 'Number::isPositive', ->
-  expect 1.isPositive()
+test 'Number::is_positive', ->
+  expect 1.is_positive()
   .toBe true
 
-  expect 100.isPositive()
+  expect 100.is_positive()
   .toBe true
 
-  expect (100 / 2).isPositive()
+  expect (100 / 2).is_positive()
   .toBe true
 
-  expect 1.1.isPositive()
+  expect 1.1.is_positive()
   .toBe true
 
-  expect 0.isPositive()
+  expect 0.is_positive()
   .toBe false
 
-  expect (-1).isPositive()
+  expect (-1).is_positive()
   .toBe false
 
-  expect 0.00001.isPositive()
+  expect 0.00001.is_positive()
   .toBe true
 
-  expect (-0.0001).isPositive()
+  expect (-0.0001).is_positive()
   .toBe false
 
-  expect 333.isPositive()
+  expect 333.is_positive()
   .toBe true
 
-  expect NaN.isPositive()
+  expect NaN.is_positive()
   .toBe false
 
-test 'Number::nonNegative', ->
-  expect 1.nonNegative()
+test 'Number::non_negative', ->
+  expect 1.non_negative()
   .toBe true
 
-  expect 0.nonNegative()
+  expect 0.non_negative()
   .toBe true
 
-  expect (-1).nonNegative()
+  expect (-1).non_negative()
   .toBe false
 
-  expect 100.nonNegative()
+  expect 100.non_negative()
   .toBe true
 
-  expect 0.000003.nonNegative()
+  expect 0.000003.non_negative()
   .toBe true
 
-  expect (-0.0002).nonNegative()
+  expect (-0.0002).non_negative()
   .toBe false
 
-  expect 10000000.nonNegative()
+  expect 10000000.non_negative()
   .toBe true
   
-  expect NaN.nonNegative()
+  expect NaN.non_negative()
   .toBe false
 
-test 'Number::isPositiveInteger', ->
-  expect 1.isPositiveInteger()
+test 'Number::is_positiveInteger', ->
+  expect 1.is_positiveInteger()
   .toBe true
 
-  expect 1.1.isPositiveInteger()
+  expect 1.1.is_positiveInteger()
   .toBe false
 
-  expect 0.isPositiveInteger()
+  expect 0.is_positiveInteger()
   .toBe false
 
-  expect (-1).isPositiveInteger()
+  expect (-1).is_positiveInteger()
   .toBe false
 
-  expect 2.isPositiveInteger()
+  expect 2.is_positiveInteger()
   .toBe true
 
-  expect NaN.isPositiveInteger()
+  expect NaN.is_positiveInteger()
   .toBe false
